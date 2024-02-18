@@ -4,7 +4,7 @@
       <%= image_tag post_image.get_image %> <!--image_tagを使いpost_imageにActiveStorageで設定したimageを表示しています。
     <% end %>
                                             post_image.get_imageの部分はPostImageモデル内に記述したメソッドを呼び出しています。-->
-    <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p> <!--※後半の章でユーザー画像設定について学習します。そこで書き換えなどを行ないますので、ここでは仮にsample-author1.jpgとしています。-->
+    <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p> <!--17章で編集済み(post_image.user.get_profile_imageと記述することで、投稿画像に紐づいたユーザーのプロフィール画像を表示できる)-->
                                                                    <!--1章【アプリケーションを作成・準備しよう】 > 画像を用意 でダウンロードした画像を使用します。-->
     <p>ショップ名：<%= post_image.shop_name %></p> <!--post_image変数のshop_nameカラムを表示します。 このカラムは、post_imageモデルに定義されています。-->
     <p>説明：<%= post_image.caption %></p> <!--post_image変数のcaptionカラムを表示します。 このカラムも、post_imageモデルに定義されています。-->
