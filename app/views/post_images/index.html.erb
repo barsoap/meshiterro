@@ -11,5 +11,6 @@
     <p>ユーザーネーム：<%= post_image.user.name %></p> <!--post_image変数のuser_idに関連付けられているuserモデルのnameカラムを表示します。 同様にこのカラムも、post_imageモデルに定義されています。-->
                                                        <!--実は、nameカラム以外にも、ユーザーモデルにカラムとして定義されている情報であれば取得できます。-->
                                                        <!--※アソシエーションによるデータの関連付けを行っているため-->
+    <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p> <!--18章 コメント件数表示-->
   </div>
 <% end %>

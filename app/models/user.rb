@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #9章で追記(PostImageとのアソシエーションを設定)
-  has_many :post_images, dependent: :destroy
-
+  has_many :post_images, dependent: :destroy #9章で追記(PostImageとのアソシエーションを設定)
+  has_many :post_comments, dependent: :destroy #18章で追記(PostCommmentのとアソシエーション設定)
   has_one_attached :profile_image #14章で追加(7章同様、ActiveStorageを使い画像をアップロードできるようにします。)
+  has_many :favorites, dependent: :destroy #19章(Favoriteモデルと関連付け)
 
   def get_profile_image(width, height) #メソッドに対して引数を設定し、引数に設定した値に画像のサイズを変換するようにしました。
     unless profile_image.attached?

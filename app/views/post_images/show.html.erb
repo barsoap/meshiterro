@@ -9,4 +9,37 @@
   <% if @post_image.user == current_user %> <!--13章で追加-->
     <%= link_to "削除", post_image_path(@post_image), method: :delete %>
   <% end %>
+
+  <% if @post_image.favorited_by?(current_user) %> <!--19章 投稿画像に付けられた「いいね」に、自分（ログインしているユーザ）が含まれているかをfavorited_by?メソッドで判定しています。-->
+    <p>                                            <!--※favorited_by?メソッドは、PostImageモデルで実装したメソッドです。-->
+      <%= link_to post_image_favorite_path(@post_image), method: :delete do %>
+        ♥<%= @post_image.favorites.count %> いいね <!--含まれているとき-->
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_image_favorite_path(@post_image), method: :post do %>
+        ♡<%= @post_image.favorites.count %> いいね <!--含まれていないとき-->
+      <% end %>
+    </p>
+  <% end %>
+</div>
+
+<div> <!--18章 投稿画像へのコメント、コメント数も表示させます。-->
+  <p>コメント件数：<%= @post_image.post_comments.count %></p>
+  <% @post_image.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+    <%= post_comment.comment %>
+    <% if post_comment.user == current_user %> <!--18章 コメント削除機能-->
+      <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %> <!--(post_comment.post_image, post_comment)の部分は投稿idとコメントの投稿idが一致してることを言ってる？-->
+    <% end %>
+  <% end %>
+</div>
+<div> <!--18章 投稿画像の詳細画面でコメント投稿できるようにする-->
+  <%= form_with model: [@post_image, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
 </div>
