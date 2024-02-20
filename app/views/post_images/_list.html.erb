@@ -10,3 +10,5 @@
   <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p> <!--18章 コメント件数表示-->
 </div>
 <% end %>
+
+<%= paginate post_images %> <!--22章 ページネーション-->

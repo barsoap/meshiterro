@@ -4,6 +4,9 @@ class PostImage < ApplicationRecord
   has_many :post_comments, dependent: :destroy #18章で追記(PostCommentモデルとのアソシエーション設定)
   has_many :favorites, dependent: :destroy #19章 (Favoriteモデルとの関連付け)
 
+  validates :shop_name, presence: true #21章 バリデーションチェック
+  validates :image, presence: true
+
   # def get_image #10章
   #   if image.attached?
   #     image

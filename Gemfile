@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails'
 
 gem 'devise' #4章 Gemファイル追加
+
+gem 'kaminari','~>1.2.1'

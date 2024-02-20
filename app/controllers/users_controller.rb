@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images #@user.post_imagesの場合は、ユーザーが投稿した投稿画像を全て取得します。
+    @post_images = @user.post_images.page(params[:page]) #@user.post_imagesの場合は、ユーザーが投稿した投稿画像を全て取得します。
                                      # したがって、データが投稿画像の数だけ、複数存在するという形になります。
   end
 
